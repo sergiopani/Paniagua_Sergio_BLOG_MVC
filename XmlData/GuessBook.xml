@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<mensajes>
+    <contacto>
+        <mensaje>Hola abuelita como estas todo bien? te quiero abuelita!</mensaje>
+        <experiencia>Muy buena</experiencia>
+        <nombre>Sergio</nombre>
+        <correo>sergio@gmail.com</correo>
+        <correo>2022-11-27</correo>
+    </contacto>
+    <contacto>
+        <mensaje>Hola a todos</mensaje>
+        <experiencia>Buena</experiencia>
+        <nombre>sergio</nombre>
+        <correo>sergio@gmail.com</correo>
+        <correo>2022-11-27</correo>
+    </contacto>
+    <contacto>
+        <mensaje>Donde estas PAPA te quiero mucho no te vayas???</mensaje>
+        <experiencia>Mala</experiencia>
+        <nombre>Alex</nombre>
+        <correo>alex@gmail.com</correo>
+        <correo>2022-11-27</correo>
+    </contacto>
+
+</mensajes>

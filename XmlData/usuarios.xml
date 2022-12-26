@@ -1,0 +1,10 @@
+<usuarios>
+    <usuario>
+        <username>serser</username>
+        <email></email>
+        <password>$2y$10$QaFZ.iQV9H/SteD/nA2lrevm10Ww/9oKOPn63CmXWqWJAqC1AOSO.</password>
+        <genero>hombre</genero>
+        <descripcion>123123123</descripcion>
+        <fecha>13-11-2022 19:23:15</fecha>
+    </usuario>
+</usuarios>

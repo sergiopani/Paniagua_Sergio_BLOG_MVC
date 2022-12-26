@@ -1,0 +1,3 @@
+<?php
+
+$errores = array();
