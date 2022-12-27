@@ -173,7 +173,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </select><br><br>
 
             <!--SUBMIT -->
-            <button type="submit">Enviar Datos</button>
+            <button type="submit" name="boto">Enviar Datos</button>
         </fieldset>
     </form>
 

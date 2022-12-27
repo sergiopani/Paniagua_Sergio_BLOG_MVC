@@ -16,7 +16,6 @@ class HomeController extends Controller
         $vista = new HomeView();
 
 
-
         $vista->show();
     }
 }

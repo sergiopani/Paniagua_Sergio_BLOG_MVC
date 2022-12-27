@@ -23,7 +23,8 @@ class ErrorView extends View
             : $this->exception->getMessage();
         include "templates/tpl_head.php";
         include "templates/tpl_header.php";
-        include "templates/tpl_error.php";
+
+        // include "templates/tpl_error.php";
         include "templates/tpl_footer.php";
     }
 

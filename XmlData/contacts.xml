@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<contacts>
+
+    <contacto>
+        <username>sergio</username>
+        <email>xpanisergio@gmail.com</email>
+        <password>$2y$10$t8kDBO7yTYcy6f1ZnLTSBef3MXECk8rtrE3z8IyYOSJfmzuOm/DDG</password>
+        <genero>hombre</genero>
+        <descripcion>holabebe</descripcion>
+    </contacto>
+</contacts>

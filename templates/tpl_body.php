@@ -50,7 +50,7 @@
                 <p class="summary">
                     <?php echo $traducciones["parrafo2"] ?>
                 </p>
-                <a href="./pages/formulario.php" class="btn">
+                <a href="?contact/show" class="btn">
                     <?php echo $traducciones["boton2"] ?> <i class="fas fa-angle-right"></i>
                 </a>
             </section>
@@ -69,7 +69,7 @@
                 <p class="summary">
                     <?php echo $traducciones["parrafo"] ?>
                 </p>
-                <a href="./pages/practica5.php" class="btn">
+                <a href="?cotis/show" class="btn">
                     <?php echo $traducciones["boton"] ?> <i class="fas fa-angle-right"></i>
                 </a>
             </section>
