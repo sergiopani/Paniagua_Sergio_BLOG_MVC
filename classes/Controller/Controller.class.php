@@ -1,15 +1,29 @@
 <?php
-class Controller{
-    public function __construct(){
+class Controller
+{
+    public function __construct()
+    {
         //Vaciado
+    }
+
+
+    public function getDataFile($file)
+    {
+        $file = "data/$file.php";
+        if (file_exists($file)) {
+            return $file;
+        } else {
+            throw new Exception("No existe el fichero de datos $file");
+        }
     }
 
     /**
      * Function sanitize() -> Antes lo tenia en varias funciones, pero no era necesario
      * ahora lo paso todo a la misma funcion
      */
-    function sanitize ($stringANetejar, $convertirAlowercase=0){
-        if (strlen($stringANetejar)==0) {
+    function sanitize($stringANetejar, $convertirAlowercase = 0)
+    {
+        if (strlen($stringANetejar) == 0) {
             $stringANetejar = "";
         } else {
             $stringANetejar = trim($stringANetejar);
@@ -21,7 +35,7 @@ class Controller{
             $stringANetejar = str_replace('%', '', $stringANetejar);
             // Restore octets.
             $stringANetejar = preg_replace('|---([a-fA-F0-9][a-fA-F0-9])---|', '%$1', $stringANetejar);
-            
+
             switch ($convertirAlowercase) {
                 case 1:
                     if (function_exists('mb_strtolower')) {
@@ -41,7 +55,6 @@ class Controller{
                     if (function_exists('mb_strtoupper') && function_exists('mb_strtolower')) {
                         $stringANetejar = mb_strtolower($stringANetejar, 'UTF-8');
                         $stringANetejar[0] = mb_strtoupper($stringANetejar, 'UTF-8');
-                        
                     } else {
                         $stringANetejar = strtolower($stringANetejar);
                         $stringANetejar[0] = strtoupper($stringANetejar[0]);
@@ -51,19 +64,18 @@ class Controller{
                     if (function_exists('mb_strtoupper') && function_exists('mb_strtolower')) {
                         $stringANetejar = mb_strtolower($stringANetejar, 'UTF-8');
                         $stringANetejar[0] = mb_strtoupper($stringANetejar, 'UTF-8');
-                        $inici=0;
+                        $inici = 0;
                         while ($pos = strpos($stringANetejar, " ", $inici)) {
-                            $inici=$pos+1;
+                            $inici = $pos + 1;
                             $stringANetejar[$inici] = mb_strtoupper($stringANetejar[$inici], 'UTF-8');
                         }
                     } else {
                         $stringANetejar = strtolower($stringANetejar);
                         $stringANetejar[0] = strtoupper($stringANetejar[0]);
-                        $inici=0;
+                        $inici = 0;
                         while ($pos = strpos($stringANetejar, " ", $inici)) {
-                            $inici=$pos+1;
+                            $inici = $pos + 1;
                             $stringANetejar[$inici] = strtoupper($stringANetejar[$inici]);
-                            
                         }
                     }
                     break;
@@ -76,7 +88,8 @@ class Controller{
      * Las funciones de validacion si que las dejo como las tenia
      */
 
-     function validar_variables($variables){
+    function validar_variables($variables)
+    {
         //validacion del select de genero
         switch ($variables['genero']) {
             case 'hombre':
@@ -94,7 +107,8 @@ class Controller{
         return $variables;
     }
 
-    function validar_username($username){
+    function validar_username($username)
+    {
         //Comprobar que el username no este vacio
         if (empty($username)) {
             return false;
@@ -104,9 +118,10 @@ class Controller{
         $username = preg_replace('/[^A-Za-z0-9]/', '', $username);
 
         return $username;
-    }  
+    }
 
-    function validar_email($email){
+    function validar_email($email)
+    {
         //Comprobar que el email no este vacio
         if (empty($email)) {
             return false;
@@ -117,7 +132,8 @@ class Controller{
         return $email;
     }
 
-    function validar_password($password){
+    function validar_password($password)
+    {
 
         //Comprobar que el password no este vacio
         if (empty($password)) {
@@ -129,7 +145,8 @@ class Controller{
         return $password;
     }
 
-    function validar_genero($genero){
+    function validar_genero($genero)
+    {
         //Comprobar que el genero no este vacio
         if (empty($genero)) {
             return false;
@@ -178,6 +195,7 @@ class Controller{
 
     function validar_codigo_postal($codigo_postal)
     {
+
         //Comprobar que tenga 5 digitos y que sean solo numeros
         if (strlen($codigo_postal) != 5 || !is_numeric($codigo_postal)) {
             return false;
@@ -187,25 +205,27 @@ class Controller{
 
     function validar_provincia($provincia)
     {
-        global $capitales;
-        //Si en las keys de capitales existe la provincia
-        if (array_key_exists($provincia, $capitales)) {
-            return $provincia;
-        }
 
-        return false;
+        // include_once $this->getDataFile('poblaciones');
+        //Si en las keys de capitales existe la provincia
+        // if (array_key_exists($provincia, $capitales)) {
+        //     return $provincia;
+        // }
+
+        return true;
     }
 
 
     function validar_poblacion($poblacion)
     {
-        global $capitales;
+        include_once $this->getDataFile('poblaciones');
+
         //Si en los values de capitales existe la poblacion
         if (in_array($poblacion, $capitales)) {
             return $poblacion;
         }
 
-        return false;
+        return true;
     }
 
     function validarExperiencia($experiencia)
@@ -230,7 +250,8 @@ class Controller{
                 break;
             case 'MUY BUENA':
                 break;
-            default:  return 'La experiencia no es correcta';                
+            default:
+                return 'La experiencia no es correcta';
         }
     }
 
@@ -281,5 +302,46 @@ class Controller{
         }
     }
 
-    
+    function verificar_extension($image)
+    {
+        //PASO 1 -> Guardamos todas las extensiones corectas en un array
+        $extensiones = array("image/jpg", "image/png", "image/jpeg", "image/gif");
+        $extension_verdadera = pathinfo($image['name']);
+        // var_dump($image['type']);
+        //PASO 2 -> Si el typo del archivo es correcto
+        if (in_array($image['type'], $extensiones)) {
+            // echo "La extension es correcta";
+            return true;
+        }
+
+        //PASO 5 -> Si no es correcto devolvemos false  
+        return false;
+    }
+
+    function existe_fichero($imagen_url)
+    {
+        //PASO 1 -> Montamos la url del fichero
+        $imagen_url = 'imgs/user-images/' . $imagen_url;
+
+        //PASO 2 -> Comprobamos si existe el fichero
+        if (file_exists($imagen_url)) {
+            return true;
+        }
+
+        //PASO 3 -> Si no existe devolvemos false
+        return false;
+    }
+
+    function size_maximo($size)
+    {
+        //PASO 1 -> Obtenemos el tamaño de la imagen
+        // $size = filesize($imagen_url);
+
+        //PASO 2 -> Comprobamos si el tamaño es mayor que 2MB
+        if ($size > 1000000) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }

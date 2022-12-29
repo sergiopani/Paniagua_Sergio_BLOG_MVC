@@ -7,16 +7,39 @@ class User
     private $email;
     private $password;
     private $genero;
-    private $descripcion;
+    private $direccion;
+    private $codigo_postal;
+    private $poblacion;
+    private $provincia;
+    private $telefono;
 
-    public function __construct($username, $email, $password, $genero, $descripcion)
-    {
+    private $imagen;
+
+    public function __construct(
+        $username,
+        $email,
+        $password,
+        $genero,
+        $direccion,
+        $codigo_postal,
+        $poblacion,
+        $provincia,
+        $telefono,
+        $imagen
+    ) {
+
         $this->username = $username;
         $this->email = $email;
         $this->password = $password;
         $this->genero = $genero;
-        $this->descripcion = $descripcion;
+        $this->direccion = $direccion;
+        $this->codigo_postal = $codigo_postal;
+        $this->poblacion = $poblacion;
+        $this->provincia = $provincia;
+        $this->telefono = $telefono;
+        $this->imagen = $imagen;
     }
+
 
     public function getUsername()
     {
@@ -38,8 +61,33 @@ class User
         return $this->genero;
     }
 
-    public function getDescripcion()
+    public function getDireccion()
     {
-        return $this->descripcion;
+        return $this->direccion;
+    }
+
+    public function getCodigoPostal()
+    {
+        return $this->codigo_postal;
+    }
+
+    public function getPoblacion()
+    {
+        return $this->poblacion;
+    }
+
+    public function getProvincia()
+    {
+        return $this->provincia;
+    }
+
+    public function getTelefono()
+    {
+        return $this->telefono;
+    }
+
+    public function getImagen()
+    {
+        return $this->imagen;
     }
 }

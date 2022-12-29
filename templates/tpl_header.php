@@ -21,8 +21,8 @@
                     <div class="header-items">
                         <ul>
                             <li><a href="../index.php" class="current"><?php echo $traducciones["header_blog"]?></a></li>
-                            <li><a href="../pages/registro.php"><?php echo $traducciones["header_about"]?></a></li>
-                            <li><a href="?contact/show"><?php echo $traducciones["register"]?></a></li>
+                            <li><a href="?contact/show"><?php echo $traducciones["header_about"]?></a></li>
+                            <li><a href="?user/register"><?php echo $traducciones["register"]?></a></li>
                         </ul>
 
                     </div>

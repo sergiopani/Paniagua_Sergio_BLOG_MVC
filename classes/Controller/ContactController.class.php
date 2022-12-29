@@ -59,12 +59,5 @@ class ContactController extends Controller
         } else {
             $vista->show();
         }
-
-
-
-
-
-        // $vista = new ContactView();
-        // $vista->show();
     }
 }

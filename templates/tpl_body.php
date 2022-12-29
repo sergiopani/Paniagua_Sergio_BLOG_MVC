@@ -32,7 +32,7 @@
                 <p class="summary">
                     <?php echo $traducciones["parrafo3"] ?>
                 </p>
-                <a href="./pages/registro.php" class="btn">
+                <a href="?user/register" class="btn">
                     <?php echo $traducciones["boton3"] ?> <i class="fas fa-angle-right"></i>
                 </a>
             </section>

@@ -1,10 +1,44 @@
+<?xml version="1.0"?>
 <usuarios>
     <usuario>
         <username>serser</username>
-        <email></email>
+        <email/>
         <password>$2y$10$QaFZ.iQV9H/SteD/nA2lrevm10Ww/9oKOPn63CmXWqWJAqC1AOSO.</password>
         <genero>hombre</genero>
         <descripcion>123123123</descripcion>
         <fecha>13-11-2022 19:23:15</fecha>
     </usuario>
-</usuarios>
+    <usuario>
+        <username>sergio</username>
+        <email>xpanisergio@gmail.com</email>
+        <password>$2y$10$uEJp73b1nIEWbo3HZni84ONEFDGCrh33poeiCP/JyF7WiK1.BwLeG</password>
+        <genero>hombre</genero>
+        <direccion>CarrerCanBarrau12</direccion>
+        <codigo_postal/>
+        <poblacion>1</poblacion>
+        <provincia>1</provincia>
+        <telefono>664326588</telefono>
+    </usuario>
+    <usuario>
+        <username>sergio</username>
+        <email>xpanisergio@gmail.com</email>
+        <password>$2y$10$JrMeThA5YE7Sx.CCxYLh4u1PYJPH56664dyXA76HSrq6FhwHMEVmm</password>
+        <genero>hombre</genero>
+        <direccion>CarrerCanBarrau12</direccion>
+        <codigo_postal/>
+        <poblacion>1</poblacion>
+        <provincia>1</provincia>
+        <telefono>664326588</telefono>
+    </usuario>
+    <usuario>
+        <username>sergio</username>
+        <email>xpanisergio@gmail.com</email>
+        <password>$2y$10$tr4VR3DBwws7zyFc./E1t.ASsDNfbByhcS1RfFlQLUq/8i7i5v7sm</password>
+        <genero>hombre</genero>
+        <direccion>CarrerCanBarrau12</direccion>
+        <codigo_postal>08310</codigo_postal>
+        <poblacion>1</poblacion>
+        <provincia>1</provincia>
+        <telefono>664326588</telefono>
+    </usuario>
+<usuario><username>sergio</username><email>xpanisergio@gmail.com</email><password>$2y$10$P.yx3evErYYEa8X4uwxn2u55y5YgHfv.sWUfm0EeN40K00alhrBMq</password><genero>hombre</genero><direccion>CarrerCanBarrau12</direccion><codigo_postal>08310</codigo_postal><poblacion>1</poblacion><provincia>1</provincia><telefono>664326588</telefono></usuario><usuario><username>sergio</username><email>xpanisergio@gmail.com</email><password>$2y$10$jzv58LuIc4s/UjLEGo7VTeKVJWk8oL4QeBFhE1hkkikyOc26J4NNm</password><genero>hombre</genero><direccion>CarrerCanBarrau12</direccion><codigo_postal>08310</codigo_postal><poblacion>1</poblacion><provincia>1</provincia><telefono>664326588</telefono></usuario><usuario><username>sergio</username><email>xpanisergio@gmail.com</email><password>$2y$10$oAs26Nys13H5i6pDwC09rO0gMvqkwWE3aa6g99mVwvTQcJ6g.USea</password><genero>hombre</genero><direccion>CarrerCanBarrau12</direccion><codigo_postal>08310</codigo_postal><poblacion>1</poblacion><provincia>1</provincia><telefono>664326588</telefono></usuario><usuario><username>sergio</username><email>xpanisergio@gmail.com</email><password>$2y$10$He5IkomsDsJ3J8wIBinAh.P5a98o9NQ/KMtb5y9Zt49bxMJZMz52m</password><genero>hombre</genero><direccion>CarrerCanBarrau12</direccion><codigo_postal>08310</codigo_postal><poblacion>1</poblacion><provincia>1</provincia><telefono>664326588</telefono></usuario><usuario><username>sergiopanix</username><email>xpanisergio@gmail.com</email><password>$2y$10$o/M5R1VtbNzRFabZYr53U.V2.dafgEasNhAaojEgSlwtfeHVO23wm</password><genero>hombre</genero><direccion>CarrerCanBarrau12</direccion><codigo_postal>08310</codigo_postal><poblacion>1</poblacion><provincia>1</provincia><telefono>664326588</telefono></usuario><usuario><username>sergiopanix</username><email>xpanisergio@gmail.com</email><password>$2y$10$jomjxifKqV3nlIO1gasK7OCykn.e888cz9NNY76LbZL9t97sQFTsi</password><genero>hombre</genero><direccion>CarrerCanBarrau12</direccion><codigo_postal>08310</codigo_postal><poblacion>1</poblacion><provincia>1</provincia><telefono>664326588</telefono></usuario><usuario><username>sergiopanix</username><email>xpanisergio@gmail.com</email><password>$2y$10$PIgWe9E73nOYCC6TvklmIul.wmJ7YnHh20n2iZaYuHqf8cNQHYln6</password><genero>hombre</genero><direccion>CarrerCanBarrau12</direccion><codigo_postal>08310</codigo_postal><poblacion>1</poblacion><provincia>1</provincia><telefono>664326588</telefono></usuario><usuario><username>sergiopanix</username><email>xpanisergio@gmail.com</email><password>$2y$10$ddN7QJBJyHeK9sqp3UlCneImTeC8c5Mm1dsIOfootP1S8dDKJ7EFi</password><genero>hombre</genero><direccion>CarrerCanBarrau12</direccion><codigo_postal>08310</codigo_postal><poblacion>1</poblacion><provincia>1</provincia><telefono>664326588</telefono></usuario></usuarios>
