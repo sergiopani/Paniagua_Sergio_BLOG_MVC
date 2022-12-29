@@ -1,25 +1,2 @@
 <?xml version="1.0"?>
-<mensajes>
-    <contacto>
-        <mensaje>Hola abuelita como estas todo bien? te quiero abuelita!</mensaje>
-        <experiencia>Muy buena</experiencia>
-        <nombre>Sergio</nombre>
-        <correo>sergio@gmail.com</correo>
-        <correo>2022-11-27</correo>
-    </contacto>
-    <contacto>
-        <mensaje>Hola a todos</mensaje>
-        <experiencia>Buena</experiencia>
-        <nombre>sergio</nombre>
-        <correo>sergio@gmail.com</correo>
-        <correo>2022-11-27</correo>
-    </contacto>
-    <contacto>
-        <mensaje>Donde estas PAPA te quiero mucho no te vayas???</mensaje>
-        <experiencia>Mala</experiencia>
-        <nombre>Alex</nombre>
-        <correo>alex@gmail.com</correo>
-        <correo>2022-11-27</correo>
-    </contacto>
-
-</mensajes>
+<mensajes><contacto><mensaje>hola esto es una prueba de como se realiza un mensaje</mensaje><experiencia>buena</experiencia><nombre>sergito</nombre><correo>sergiopani18@gmail.com</correo><correo>2022-12-29</correo></contacto><contacto><mensaje>sergio</mensaje><experiencia>mala</experiencia><nombre>sergio</nombre><correo>xpanisergio@gmail.com</correo><correo>2022-12-29</correo></contacto><contacto><mensaje>Donde estas PAPA te quiero mucho no te vayas???</mensaje><experiencia>Mala</experiencia><nombre>Alex</nombre><correo>alex@gmail.com</correo><correo>2022-12-29</correo></contacto><contacto><mensaje>Hola a todos</mensaje><experiencia>Buena</experiencia><nombre>sergio</nombre><correo>sergio@gmail.com</correo><correo>2022-12-29</correo></contacto><contacto><mensaje>Hola abuelita como estas todo bien? te quiero abuelita!</mensaje><experiencia>Muy buena</experiencia><nombre>Sergio</nombre><correo>sergio@gmail.com</correo><correo>2022-12-29</correo></contacto><contacto><mensaje>hola a todes</mensaje><experiencia>mala</experiencia><nombre>sergio</nombre><correo>xpanisergio@gmail.com</correo><correo>2022-12-29</correo></contacto></mensajes>

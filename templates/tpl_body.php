@@ -14,7 +14,7 @@
                 <p class="summary">
                     <?php echo $traducciones["parrafo4"] ?>
                 </p>
-                <a href="./pages/tablaMuertos.php" class="btn">
+                <a href="?book/show" class="btn">
                     <?php echo $traducciones["boton4"] ?> <i class="fas fa-angle-right"></i>
                 </a>
             </section>

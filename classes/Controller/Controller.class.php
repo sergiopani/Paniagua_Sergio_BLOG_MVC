@@ -344,4 +344,21 @@ class Controller
             return true;
         }
     }
+
+    function validarMensaje($mensaje)
+    {
+        /***
+         * 1 -> El mensaje no puede estar vacio ( A los muertos siempre se les habla)
+         * 2-> EL mensaje tiene que tener menos de 200 caracteres
+         * 
+         */
+        if (empty($mensaje)) {
+
+            return 'El mensaje no puede estar vacio';
+        }
+        if (strlen($mensaje) > 200) {
+
+            return 'El mensaje no puede tener mas de 200 caracteres';
+        }
+    }
 }
