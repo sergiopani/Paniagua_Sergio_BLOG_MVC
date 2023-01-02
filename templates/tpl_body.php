@@ -1,6 +1,24 @@
 <section class="container">
     <section class="recent-posts">
-        <h1><?php echo $traducciones["posts_header"] ?></h1>
+        <h1 style="color:black"><?php echo $traducciones["posts_header"] ?></h1>
+        <article>
+            <figure>
+                <img src="imgs/random-images/loginImage2.jpg" alt="blog-image" style="width:500px;" />
+                <figcaption style="width:500px;"><?php echo $traducciones["imagen_descripcion5"] ?></figcaption>
+            </figure>
+            <section class=" content" style="width:800px;">
+                <h2 class="title"><?php echo $traducciones["titulo5"] ?></h2>
+                <h3 class="sub-title">
+                    <?php echo $traducciones["subtitulo5"] ?>
+                </h3>
+                <p class="summary">
+                    <?php echo $traducciones["parrafo5"] ?>
+                </p>
+                <a href="?register/show" class="btn">
+                    <?php echo $traducciones["boton5"] ?> <i class="fas fa-angle-right"></i>
+                </a>
+            </section>
+        </article>
         <article>
             <figure>
                 <img src="imgs/random-images/GuessBook2.jpg" alt="blog-image" style="width:500px;" />

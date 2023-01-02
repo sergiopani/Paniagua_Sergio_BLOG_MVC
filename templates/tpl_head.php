@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="styles/pages/home.css" />
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=swap" rel="stylesheet" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" />
+	<link rel="stylesheet" href="../styles/pages/blog-register.css" />
 	<style>
 		.alert-success {
 			padding: 12px;

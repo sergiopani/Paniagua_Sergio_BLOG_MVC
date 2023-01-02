@@ -20,9 +20,9 @@
                     </div>
                     <div class="header-items">
                         <ul>
-                            <li><a href="../index.php" class="current"><?php echo $traducciones["header_blog"]?></a></li>
-                            <li><a href="?contact/show"><?php echo $traducciones["header_about"]?></a></li>
-                            <li><a href="?user/register"><?php echo $traducciones["register"]?></a></li>
+                            <li><a href="../index.php" class="current"><?php echo $traducciones["header_blog"]?></a></li>                            
+                            <li><a href="?login/show"><?php echo $traducciones["login"]?></a></li>
+                            <li><a href="?register/show"><?php echo $traducciones["register"]?></a></li>
                         </ul>
 
                     </div>

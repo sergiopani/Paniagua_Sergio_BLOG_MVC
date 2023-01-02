@@ -63,7 +63,7 @@ class Controller
                 case 4:
                     if (function_exists('mb_strtoupper') && function_exists('mb_strtolower')) {
                         $stringANetejar = mb_strtolower($stringANetejar, 'UTF-8');
-                        $stringANetejar[0] = mb_strtoupper($stringANetejar, 'UTF-8');
+                        // $stringANetejar[0] = mb_strtoupper($stringANetejar, 'UTF-8');
                         $inici = 0;
                         while ($pos = strpos($stringANetejar, " ", $inici)) {
                             $inici = $pos + 1;
@@ -118,6 +118,18 @@ class Controller
         $username = preg_replace('/[^A-Za-z0-9]/', '', $username);
 
         return $username;
+    }
+
+    function validar_idioma($idioma)
+    {
+        if (
+            $idioma == 'es' || $idioma == 'en' || $idioma == 'xn' || $idioma == 'fr' || $idioma = 'al'
+
+        ) {
+            return $idioma;
+        }
+        //Si no es ninguno de los anteriores,devolvemos false
+        return false;
     }
 
     function validar_email($email)

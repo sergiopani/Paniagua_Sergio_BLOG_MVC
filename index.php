@@ -27,6 +27,7 @@ function my_autoloader($class)
     throw new Exception("Nose ha podido cargar la clase: $class");
 }
 
+
 spl_autoload_register("my_autoloader");
 
 
