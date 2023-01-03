@@ -14,11 +14,24 @@ class HomeView extends View
 
         require_once $this->getFitxer();
 
-        // $valorsPossibles = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
-        // for ($i = 1; $i <= 6; $i++) {
-        //     $resultat .= $valorsPossibles[rand(0, strlen($valorsPossibles) - 1)];
-        // }
+        /** 
+         * PASO 2 -> Preparamos la alerta para el html
+         * Este tipo de alertas es para mostrar mensajes
+         * como el de logout, o el de registro correcto
+         */
+        $alert = '';
+        if (isset($_POST['message']) && isset($_POST['message_type'])) {
+            $alert = $this->getAlert($_POST['message'], $_POST['message_type']);
+        }
+
+        /**
+         * PASO 3 -> Preparamos el usuario por si lo tenemos que usar
+         */
+        if (isset($_SESSION['email'])) {
+            $user_email = $_SESSION['email'];
+        }
+
 
         include "templates/tpl_head.php";
         include "templates/tpl_header.php";

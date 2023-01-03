@@ -1,4 +1,5 @@
 <section class="container">
+
     <section class="recent-posts">
         <h1 style="color:black"><?php echo $traducciones["posts_header"] ?></h1>
         <article>

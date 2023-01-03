@@ -27,6 +27,13 @@ class RegisterView extends View
         $user_form = $this->getValues($user_form);
 
 
+        /**
+         * PASO 3 -> Preparamos el usuario por si lo tenemos que usar
+         */
+        if (isset($_SESSION['email'])) {
+            $user_email = $_SESSION['email'];
+        }
+
         include "templates/tpl_head.php";
         include "templates/tpl_header.php";
         include "templates/tpl_blogRegister.php";

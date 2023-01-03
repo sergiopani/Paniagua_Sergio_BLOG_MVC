@@ -14,6 +14,12 @@ class CotisView extends View
 
         $table = $this->create_html_table($array);
         /**
+         * PASO 3 -> Preparamos el usuario por si lo tenemos que usar
+         */
+        if (isset($_SESSION['email'])) {
+            $user_email = $_SESSION['email'];
+        }
+        /**
          * Incluimos todas las templates que se van a mostrar
          */
         include "templates/tpl_head.php";

@@ -97,9 +97,21 @@
             echo '<p style="color:red">' . $errores['sexo'] . '</p>';
             ?>
             <div class="formbox">
-                <input type="text" class="inputbody in2" placeholder="Direcion" name="direcion" value="<?php echo $user_form['direcion'] ?>">
+
+                <input type="date" class="inputbody in2" placeholder="Direcion" name="nacimiento" value="<?php echo $user_form['nacimiento'] ?>">
+                <?php
+                echo '<p style="color:red">' . $errores['nacimiento'] . '</p>';
+                ?>
+            </div>
+
+            <div class="formbox">
+                <input style="display:inline; width:40%" type="text" class="inputbody in2" placeholder="Direcion" name="direcion" value="<?php echo $user_form['direcion'] ?>">
+                <input style="display:inline; width:35%" type="text" class="inputbody in2" placeholder="Codigo Postal" name="cp" value="<?php echo $user_form['cp'] ?>">
                 <?php
                 echo '<p style="color:red">' . $errores['direcion'] . '</p>';
+                ?>
+                <?php
+                echo '<p style="color:red">' . $errores['cp'] . '</p>';
                 ?>
             </div>
             <div class="formbox">

@@ -48,7 +48,7 @@ class View
 
         return $resultado;
     }
-    public function getAlert($message, $message_type)
+    public function getAlert($message = null, $message_type = null)
     {
         if ($message) {
             return '<div class="alert alert-' . $message_type . '" role="alert">' . $message . '</div>';
@@ -71,8 +71,10 @@ class View
         $errors_to_html['password'] = isset($errores['password']) ? $errores['password'] : '';
         $errors_to_html['numeroIdent'] = isset($errores['numeroIdent']) ? $errores['numeroIdent'] : '';
         $errors_to_html['tipoIdent'] = isset($errores['tipoIdent']) ? $errores['tipoIdent'] : '';
+        $errors_to_html['nacimiento'] = isset($errores['nacimiento']) ? $errores['nacimiento'] : '';
         $errors_to_html['sexo'] = isset($errores['sexo']) ? $errores['sexo'] : '';
         $errors_to_html['direcion'] = isset($errores['direcion']) ? $errores['direcion'] : '';
+        $errors_to_html['cp'] = isset($errores['cp']) ? $errores['cp'] : '';
         $errors_to_html['telefono'] = isset($errores['telefono']) ? $errores['telefono'] : '';
         $errors_to_html['poblacion'] = isset($errores['poblacion']) ? $errores['poblacion'] : '';
         $errors_to_html['provincia'] = isset($errores['provincia']) ? $errores['provincia'] : '';
@@ -92,8 +94,10 @@ class View
         $values_to_html['password'] = isset($values['password']) ? $values['password'] : '';
         $values_to_html['numeroIdent'] = isset($values['numeroIdent']) ? $values['numeroIdent'] : '';
         $values_to_html['tipoIdent'] = isset($values['tipoIdent']) ? $values['tipoIdent'] : '';
+        $values_to_html['nacimiento'] = isset($values['nacimiento']) ? $values['nacimiento'] : '';
         $values_to_html['sexo'] = isset($values['sexo']) ? $values['sexo'] : '';
         $values_to_html['direcion'] = isset($values['direcion']) ? $values['direcion'] : '';
+        $values_to_html['cp'] = isset($values['cp']) ? $values['cp'] : '';
         $values_to_html['poblacion'] = isset($values['poblacion']) ? $values['poblacion'] : '';
         $values_to_html['provincia'] = isset($values['provincia']) ? $values['provincia'] : '';
         $values_to_html['telefono'] = isset($values['telefono']) ? $values['telefono'] : '';
