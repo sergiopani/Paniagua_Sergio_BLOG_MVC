@@ -58,6 +58,7 @@
         background-color: #c0392b;
         color: white;
         margin-top: 100px;
+        z-index: 999;
     }
 
     span {

@@ -1,6 +1,10 @@
 <section class="container">
-
     <section class="recent-posts">
+        <!--Lanzamos una alerta con el mensaje hemos guardado en $_SESION -->
+        <?php if (isset($_SESSION['message']) && isset($_SESSION['message_type'])) {
+            echo "<div class=" . $_SESSION['message_type'] . ">"  . $_SESSION['message'] . "</div>";
+        }
+        ?>
         <h1 style="color:black"><?php echo $traducciones["posts_header"] ?></h1>
         <article>
             <figure style="display:flex;flex-direction:column; justify-content: center;">

@@ -5,12 +5,12 @@ class LoginView extends View
     {
         parent::__construct();
     }
-    public function show($errores = array(), $actualValues = array())
+    public function show($errores = array(), $actualValues = array(), $message = null, $message_type = null)
     {
         require_once $this->getFitxer();
         $alert = '';
-        if (isset($_POST['message']) && isset($_POST['message_type'])) {
-            $alert = $this->getAlert($_POST['message'], $_POST['message_type']);
+        if (isset($message) && isset($message_type)) {
+            $alert = $this->getAlert($message, $message_type);
         }
 
         /**

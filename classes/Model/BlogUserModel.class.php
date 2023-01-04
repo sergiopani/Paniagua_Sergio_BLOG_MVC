@@ -28,6 +28,7 @@ class BlogUserModel
         telefon, imatge, status, navegador, plataforma) 
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
             $stmt = self::$connection->prepare($query);
+
             $params = array(
                 $user->getEmail(), $user->getPassword(), $user->getTipusIdent(),
                 $user->getNumeroIdent(), $user->getNom(), $user->getCognoms(), $user->getSexe(), $user->getNaixement(), $user->getAdreca(), $user->getCodiPostal(),
@@ -39,7 +40,7 @@ class BlogUserModel
              * lo que hace es substuir los interrogantes por los datos que tenemos en la array para 
              * insertarlos
              */
-            call_user_func_array(array($stmt, 'bind_param'), ['sssssssssssssisss', ...$params]);
+            call_user_func_array(array($stmt, 'bind_param'), ['sssssssssssssisss', ...($params)]);
             $stmt->execute();
             return [true, 'Usuario insertado correctamente'];
         } catch (Exception $e) {
@@ -110,7 +111,7 @@ class BlogUserModel
             //Cerramos la conexion de base de datos
             self::$connection->close();
 
-            return [!$count > 0, ''];
+            return [!($count > 0), ''];
         }
     }
 

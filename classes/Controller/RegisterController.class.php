@@ -149,7 +149,7 @@ class RegisterController extends Controller
                 $blog_user->setNaixement($user_form['nacimiento']);
                 $blog_user->setAdreca($user_form['direcion']);
                 $blog_user->setCodiPostal($user_form['cp']);
-                $blog_user->setImatge(null);
+                $blog_user->setImatge('null');
 
                 $user_agent = $_SERVER['HTTP_USER_AGENT'];
 
@@ -237,6 +237,7 @@ class RegisterController extends Controller
                 if ($success) {
                     $message = "Usuario registrado correctamente!";
                     $message_type = "success";
+
                     $view = new LoginView();
                     $view->show(null, null, $message, $message_type);
                 } else {

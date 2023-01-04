@@ -1,6 +1,6 @@
-<div id="contentwrapper" style="height:500px">
+<div id="contentwrapper" style="height:680px">
     <?php echo $alert ?>
-    <div id="content">
+    <div id="content" style="margin-top:120px">
 
         <div id="leftbod">
 
@@ -8,7 +8,7 @@
                 Postea en en el blog! Y guarda tus posts favoritos!</div>
 
             <div class="leftbar">
-                <img src="../imgs/icons/planta.png" alt="" class="iconwrap fb1" />
+                <img src="imgs/icons/planta.png" alt="" class="iconwrap fb1" />
                 <div class="fb1">
                     <span class="rowtext">Sube fotos y actualizalas</span>
                     <span class="rowtext2 fb1">de tus amigos!</span>
@@ -16,7 +16,7 @@
             </div>
 
             <div class="leftbar">
-                <img src="../imgs/icons/planta1.png" alt="" class="iconwrap fb1" />
+                <img src="imgs/icons/planta1.png" alt="" class="iconwrap fb1" />
                 <div class="fb1">
                     <span class="rowtext">Mira que post nuevos hay</span>
                     <span class="rowtext2 fb1">disfruta de un tiempo </span>
@@ -24,7 +24,7 @@
             </div>
 
             <div class="leftbar">
-                <img src="../imgs/icons/planta2.png" alt="" class="iconwrap fb1" />
+                <img src="imgs/icons/planta2.png" alt="" class="iconwrap fb1" />
                 <div class="fb1">
                     <span class="rowtext">Mira mas</span>
                     <span class="rowtext2 fb1">Mira cuantos usuarios los ven!</span>

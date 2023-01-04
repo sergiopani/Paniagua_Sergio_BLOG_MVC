@@ -59,14 +59,16 @@ class LoginController extends Controller
             $host = $env['DB_HOST'];
             $dbname = $env['DB_DATABASE'];
             $username = $env['DB_USERNAME'];
-            $password = $env['DB_PASSWORD'];
+            $password_bd = $env['DB_PASSWORD'];
 
-            BlogUserModel::create_connection($host, $dbname, $username, $password);
+            BlogUserModel::create_connection($host, $dbname, $username, $password_bd);
             list($success, $error) = BlogUserModel::emailExists($email);
-            if (!$success) {
+            if ($success) {
+                $message = "No existe el email";
+                $message_type = "danger";
                 $errores["email"] = "No existe el email: $error";
                 $view = new LoginView();
-                $view->show($errores, [$email, $password]);
+                $view->show($errores, [$email, $password], $message, $message_type);
                 return;
             }
 
@@ -76,13 +78,15 @@ class LoginController extends Controller
              * BlogUserModel
              */
 
-            BlogUserModel::create_connection($host, $dbname, $username, $password);
+            BlogUserModel::create_connection($host, $dbname, $username, $password_bd);
             list($success, $error) = BlogUserModel::checkCredentials($email, $password);
 
-            if (!$success) {
+            if ($success) {
+                $message = "La contraseña no es correcta";
+                $message_type = "danger";
                 $errores["password"] = "La contraseña no es correcta: $error";
                 $view = new LoginView();
-                $view->show($errores, [$email, $password]);
+                $view->show($errores, [$email, $password], $message, $message_type);
                 return;
             }
 

@@ -1,6 +1,6 @@
 <?php
 
-ini_set('display_errors', 1);
+ini_set('display_errors', 0);
 
 /**
  * PASO 1 -> 0 -> La cookie se borra al reiniciar el navegador
