@@ -36,6 +36,7 @@ spl_autoload_register("my_autoloader");
  * lanzamos un error
  */
 try {
+
     $app = new FrontController();
     $app->dispatch();
 } catch (Exception $e) {

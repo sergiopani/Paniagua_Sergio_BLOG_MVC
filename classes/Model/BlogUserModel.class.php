@@ -13,10 +13,10 @@ class BlogUserModel
     {
 
         try {
-            //!Crear las variables de environment??
+            //!Crear nueva clase Conexion??
             self::$connection = new mysqli($host, $username, $password, $dbname);
         } catch (mysqli_sql_exception $e) {
-            throw new Exception("Error de conexion a la base de datos", $e->getMessage());
+            throw new Exception("Error de conexion a la base de datos");
         }
     }
 
@@ -91,6 +91,8 @@ class BlogUserModel
             self::$connection->close();
         }
     }
+
+
 
     public static function checkCredentials($email, $password)
     {

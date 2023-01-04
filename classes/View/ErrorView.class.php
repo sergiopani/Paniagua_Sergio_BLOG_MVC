@@ -13,18 +13,26 @@ class ErrorView extends View
 
     public function show($param = null)
     {
+        /**
+         * PASO 1-> Fichero con la array de traducciones
+         */
         require_once $this->getFitxer();
-        $lang = $this->lang;
-        $html_opacityLang[$lang] = "style=\"opacity:1;\"";
 
+        /** 
+         * PASO 2 -> Preparamos las variables para el template
+         */
         $titol = "UNEXPECTED ERROR";
         $missatge = (is_null($this->exception))
             ? ((is_null($param)) ? "Ha ocorregut un error no definit" : $param)
             : $this->exception->getMessage();
+
+
+        /**
+         * PASO 3 -> Incluimos los templates
+         */
         include "templates/tpl_head.php";
         include "templates/tpl_header.php";
-
-        // include "templates/tpl_error.php";
+        include "templates/tpl_error.php";
         include "templates/tpl_footer.php";
     }
 
@@ -36,7 +44,7 @@ class ErrorView extends View
 
         include "templates/tpl_head.php";
         include "templates/tpl_header.php";
-        // include "templates/tpl_ok.php";
+        include "templates/tpl_ok.php";
         include "templates/tpl_footer.php";
     }
 }

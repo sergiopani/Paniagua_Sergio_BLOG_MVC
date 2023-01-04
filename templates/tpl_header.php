@@ -33,7 +33,7 @@
                         <a href="?language/set/fr"><img class="country" src="../imgs/random-images/fr.png" /></a>
                         <a href="?language/set/xn"><img class="country" src="../imgs/random-images/xn.png" /></a>
                     </div>
-                    <div class="usuario" style="margin-bottom: 20px;">
+                    <div class="usuario" style="margin-bottom: 13px;">
                         <img src=" ../imgs/icons/planta.png" alt="" class="iconwrap fb1" />
                         <?php if (isset($user_email)) {
                             echo $user_email;

@@ -174,11 +174,12 @@ class RegisterController extends Controller
                  * que tiene permisos para realizar selects
                  * como la conexion se va a cerrar
                  */
+                $env = parse_ini_file('config.env');
 
-                $host = 'localhost';
-                $dbname = 'web';
-                $username = 'root';
-                $password = '';
+                $host = $env['DB_HOST'];
+                $dbname = $env['DB_DATABASE'];
+                $username = $env['DB_USERNAME'];
+                $password = $env['DB_PASSWORD'];
                 BlogUserModel::create_connection($host, $dbname, $username, $password);
 
                 /**

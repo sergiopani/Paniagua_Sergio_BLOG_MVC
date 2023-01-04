@@ -3,9 +3,23 @@ class Controller
 {
     public function __construct()
     {
-        //Vaciado
+        /**
+         * Si se produce 
+         * una excepcion en alguno de los controladores
+         * voy a llamar a la pagina de error view
+         * Las excepciones se pueden producir por ejemplo cuando el Controlador
+         * llama al modelo, y este a su vez llama a la base de datos, y esta no responde
+         */
+        set_exception_handler(array($this, 'handleException'));
     }
 
+    public function handleException($exception)
+    {
+
+        $exception = new Exception($exception->getMessage());
+        $vista = new ErrorView($exception);
+        $vista->show();
+    }
 
     public function getDataFile($file)
     {
