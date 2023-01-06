@@ -19,8 +19,18 @@
                 <p class="summary">
                     <?php echo $traducciones["parrafo6"] ?>
                 </p>
-                <a href="?register/show" class="btn">
-                    <?php echo $traducciones["boton6"] ?> <i class="fas fa-angle-right"></i>
+                <!---SI LA KEY DE EMAIL DEFINIDA EN LA VARIABLE DE SESION
+                Quiere decir que un usuario se encuentra logeado -> por lo tanto le mostramos la pagina del admin
+                Si no le vammos a mostrar la pagina de registro
+                -->
+                <?php
+                if (isset($_SESSION['email'])) {
+                    echo "<a href='?commentAdmin/show' class='btn'>";
+                } else {
+                    echo "<a href='?register/show' class='btn'>";
+                }
+                ?>
+                <?php echo $traducciones["boton6"] ?> <i class="fas fa-angle-right"></i>
                 </a>
             </section>
         </article>

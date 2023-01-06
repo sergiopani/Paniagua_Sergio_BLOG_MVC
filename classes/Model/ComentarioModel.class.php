@@ -3,7 +3,7 @@ class ComentarioModel
 {
     const RUTA = 'XmlData/GuessBook.xml';
 
-    static function create(Comentario $contacto)
+    public static function create(Comentario $contacto)
     {
         /**
          * PASO 0 -> Leemos el xml actual que nos devutlve un array
@@ -49,7 +49,7 @@ class ComentarioModel
         }
     }
 
-    static function read()
+    public static function read()
     {
         /**
          * PASO 1 -> Comprobamos si existe el fichero
@@ -86,6 +86,42 @@ class ComentarioModel
              * PASO 1.1 -> Si no existe el fichero xml
              */
             throw new Exception('Error en la base de datos: No existe el fichero');
+        }
+    }
+
+    public static function delete($id)
+    {
+        /**
+         * La id hace referencia a la posicion de la array que tenemos que eliminar
+         */
+        $contactosArray = self::read();
+        unset($contactosArray[$id]);
+        /**  
+         * volvemos a escribir todos los comentarios en el array
+         */
+        self::writeFromArray($contactosArray);
+    }
+
+    public static function writeFromArray($contactosArray)
+    {
+        $root = new SimpleXMLElement('<mensajes></mensajes>');
+        foreach ($contactosArray as $contacto) {
+            /**
+             * PASO 4 -> CREAMOS LOS NODOS HIJOS DE CONTACTO
+             */
+            $nodoContacto = $root->addChild('contacto');
+            $nodoContacto->addChild('mensaje', $contacto->getMensaje());
+            $nodoContacto->addChild('experiencia', $contacto->getExperiencia());
+            $nodoContacto->addChild('nombre', $contacto->getNombre());
+            $nodoContacto->addChild('correo', $contacto->getEmail());
+            $nodoContacto->addChild('correo', $contacto->getFecha());
+        }
+
+
+        try {
+            $root->asXML(self::RUTA);
+        } catch (Exception $e) {
+            throw new Exception("No tienes permisos para escribir en el xml!");
         }
     }
 }

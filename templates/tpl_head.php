@@ -11,6 +11,8 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" />
 	<link rel="stylesheet" href="styles/pages/blog-register.css" />
 	<link rel="stylesheet" href="styles/pages/error-page.css">
+
+	<!--ESTOS SON ESTILOS QUE DE MOMENTO ESTAN AQUI PERO DESPUES MOVERE-->
 	<style>
 		.alert-success {
 			padding: 12px;

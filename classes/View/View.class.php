@@ -22,7 +22,7 @@ class View
         }
     }
 
-    function htmlGenerateContactos($contactos)
+    function htmlGenerateContactos($contactos, $admin = null)
     {
         /**
          * PASO 1 -> ESTO ES LO QUE QUIERO GENERAR
@@ -33,6 +33,11 @@ class View
          * PASO 2 -> GENERAR EL HTML como tantos contactos como tenga el array
          */
         for ($i = 0; $i < count($contactos); $i++) {
+            /**  
+             *  PASO DE ULTIMA HORA -> Como los comentarios no tenian id, le voy a añadirle una
+             * id para poder eliminarlo -> La id que le pongo es la posicion de la array
+             */
+            $contactos[$i]->setId($i);
             $resultado .= '<div class="own-table-row">' .
                 '<div class="table-data">' .
                 $contactos[$i]->getMensaje() . '</div>' .
@@ -42,8 +47,12 @@ class View
                 $contactos[$i]->getNombre() . '</div>' .
                 '<div class="table-data">' .
                 $contactos[$i]->getEmail() . '</div>' .
-                '<div class="table-data">' . $contactos[$i]->getFecha() . '</div>' .
-                '</div>';
+                '<div class="table-data">' . $contactos[$i]->getFecha() . '</div>';
+            if (isset($admin)) {
+                //Boton de eliminar
+                $resultado .= '<div class="table-data table-data-button">' . '<a href="?commentAdmin/delete&id=' .   $contactos[$i]->getId() . '" class="btn btn-danger">Eliminar</a>' . '</div>';
+            }
+            $resultado .= '</div>';
         }
 
         return $resultado;

@@ -1,6 +1,7 @@
 <?php
 class Comentario
 {
+    private $id;
     private $mensaje;
     private $experiencia;
     private $nombre;
@@ -15,6 +16,11 @@ class Comentario
         $this->fecha = ($data == null) ? date("Y-m-d") : $data;
         //Experiencia mala por defecto
         $this->experiencia = ($experiencia == null) ? 'Mala' : $experiencia;
+    }
+
+    public function getId()
+    {
+        return $this->id;
     }
 
     /**
@@ -55,5 +61,10 @@ class Comentario
     public function getExperiencia()
     {
         return $this->experiencia;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 }
