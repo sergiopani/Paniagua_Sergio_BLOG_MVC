@@ -13,7 +13,7 @@ class BlogUserModel
     {
 
         try {
-            //!Crear nueva clase Conexion??
+            //!TODO Crear la clase conexion para la siguiente practica???
             self::$connection = new mysqli($host, $username, $password, $dbname);
         } catch (mysqli_sql_exception $e) {
             throw new Exception("Error de conexion a la base de datos");
