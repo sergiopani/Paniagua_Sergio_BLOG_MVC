@@ -47,6 +47,32 @@ class BlogUserModel
              */
             call_user_func_array(array($stmt, 'bind_param'), ['sssssssssssssisss', ...($params)]);
 
+            /**
+             * Forma 1 -> Pasando los parametros de forma individual
+             * $stmt->bind_param('sssssssssssssisss', $user->getEmail());
+             * $stmt->bind_param('sssssssssssssisss', $user->getPassword());
+             * $stmt->bind_param('sssssssssssssisss', $user->getTipusIdent());
+             * ................
+             */
+
+            /**
+             * Forma 2 -> Pasando los parametros de forma individual
+             * $stmt->bind_param('sssssssssssssisss', $user->getEmail(), $user->getPassword(), $user->getTipusIdent(),............
+             */
+
+            /**
+             * Forma 3  -> Pasando en forma de array
+             * $stmt->bind_param('sssssssssssssisss', $params);
+             */
+
+            /**
+             * Forma 4 -> Usando la funcion call_user_func_array() que es como lo he hecho ya
+             */
+
+            /**
+             * Forma 5 -> Pasando los parametros direcatemente en el excute
+             * $stmt->execute($params);
+             */
 
             $stmt->execute();
             return [true, 'Usuario insertado correctamente'];
