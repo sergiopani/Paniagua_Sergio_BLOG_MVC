@@ -54,12 +54,12 @@ class LoginController extends Controller
              * existe en la base de datos, para ello utilizo el metodo 
              * emailExists de la clase BlogUserModel
              */
-            $env = parse_ini_file('config.env');
 
-            $host = $env['DB_HOST'];
-            $dbname = $env['DB_DATABASE'];
-            $username = $env['DB_USERNAME'];
-            $password_bd = $env['DB_PASSWORD'];
+
+            $host = $this->env['DB_HOST'];
+            $dbname = $this->env['DB_DATABASE'];
+            $username = $this->env['USR_GENERIC'];
+            $password_bd = $this->env['USR_PASSWORD'];
 
             BlogUserModel::create_connection($host, $dbname, $username, $password_bd);
             list($success, $error) = BlogUserModel::emailExists($email);

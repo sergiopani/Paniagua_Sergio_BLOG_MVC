@@ -40,7 +40,14 @@ class BlogUserModel
              * lo que hace es substuir los interrogantes por los datos que tenemos en la array para 
              * insertarlos
              */
+
+            /**
+             * METODO USADO, He usado destructuracion en la array de parametros, que es lo mismo que pasar los 
+             * parametros de forma individual, lo aprendi de javascript
+             */
             call_user_func_array(array($stmt, 'bind_param'), ['sssssssssssssisss', ...($params)]);
+
+
             $stmt->execute();
             return [true, 'Usuario insertado correctamente'];
         } catch (Exception $e) {
