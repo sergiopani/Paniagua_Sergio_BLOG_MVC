@@ -87,6 +87,7 @@ class View
         $errors_to_html['telefono'] = isset($errores['telefono']) ? $errores['telefono'] : '';
         $errors_to_html['poblacion'] = isset($errores['poblacion']) ? $errores['poblacion'] : '';
         $errors_to_html['provincia'] = isset($errores['provincia']) ? $errores['provincia'] : '';
+        $errors_to_html['imagen'] = isset($errores['imagen']) ? $errores['imagen'] : '';
         //añadir todos los valores de form_values a errores
         // $errors_to_html = array_merge($errores, $form_values);
 

@@ -49,19 +49,20 @@ class RegisterController extends Controller
             /**
              * PASO 1 -> Sanitizamos todas las variables
              */
-            $user_form['name'] = $this->sanitize($_POST['name'], 4);
-            $user_form['secondname'] = $this->sanitize($_POST['secondname'], 4);
-            $user_form['email'] = $this->sanitize($_POST['email'], 1);
-            $user_form['password'] = $this->sanitize($_POST['password'], 2);
-            $user_form['sexo'] = $this->sanitize($_POST['sexo'], 4);
-            $user_form['tipoIdent'] = $this->sanitize($_POST['tipoIdent'], 4);
-            $user_form['numeroIdent'] = $this->sanitize($_POST['numeroIdent'], 4);
-            $user_form['nacimiento'] = $this->sanitize($_POST['nacimiento'], 4);
-            $user_form['direcion'] = $this->sanitize($_POST['direcion'], 4);
-            $user_form['cp'] = $this->sanitize($_POST['cp'], 4);
-            $user_form['poblacion'] = $this->sanitize($_POST['poblacion'], 4);
-            $user_form['provincia'] = $this->sanitize($_POST['provincia'], 4);
-            $user_form['telefono'] = $this->sanitize($_POST['telefono'], 4);
+            $user_form['name'] = $this->sanitize_values($_POST['name'], 'text');
+            $user_form['secondname'] = $this->sanitize_values($_POST['secondname'], 'text');
+            $user_form['email'] = $this->sanitize_values($_POST['email'], 'email');
+            $user_form['password'] = $this->sanitize_values($_POST['password'], 'password');
+            $user_form['sexo'] = $this->sanitize_values($_POST['sexo']);
+            $user_form['tipoIdent'] = $this->sanitize_values($_POST['tipoIdent'], 'identificacion');
+            $user_form['numeroIdent'] = $this->sanitize_values($_POST['numeroIdent'], 'identificacion');
+            $user_form['nacimiento'] = $this->sanitize_values($_POST['nacimiento'], 'identificacion');
+            $user_form['direcion'] = $this->sanitize_values($_POST['direcion'], 'text');
+            $user_form['cp'] = $this->sanitize_values($_POST['cp'], 'int');
+            $user_form['poblacion'] = $this->sanitize_values($_POST['poblacion'], 'text');
+            $user_form['provincia'] = $this->sanitize_values($_POST['provincia'], 'text');
+            $user_form['telefono'] = $this->sanitize_values($_POST['telefono'], 'int');
+            $user_form['imagen'] = $this->sanitize_values($_FILES['imagen']['name']);
 
             /** 
              * PASO 2 -> Validamos todos los campos
@@ -72,19 +73,39 @@ class RegisterController extends Controller
                 }
             }
 
+            if (strlen($user_form['nom']) > 30) {
+                $errores['nom'] = 'El nombre no puede tener más de 30 caracteres';
+            }
+
+            if (strlen($user_form['direcion']) > 100) {
+                $errores['direcion'] = 'La dirección no puede tener más de 100 caracteres';
+            }
+
+            if (strlen($user_form['poblacion']) > 40) {
+                $errores['poblacion'] = 'La población no puede tener más de 40 caracteres';
+            }
+
+            if (strlen($user_form['provincia']) > 40) {
+                $errores['provincia'] = 'La provincia no puede tener más de 40 caracteres';
+            }
+
+            if (strlen($user_form['cognoms']) > 30) {
+                $errores['cognoms'] = 'Los apellidos no pueden tener más de 30 caracteres';
+            }
+
             if (strlen($user_form['password']) <= 0 && strlen($user_form['password']) >= 60) {
                 $errores['password'] = 'El password debe tener al menos 8 caracteres';
             }
 
-            if (!in_array($user_form["tipoIdent"], array('dni', 'nie', 'cif'))) {
+            if (!in_array($user_form["tipoIdent"], array('DNI', 'NIE', 'CIF'))) {
                 $errores['tipoIdent'] = 'El tipo de identificacion no es valido';
             }
 
-            if (!preg_match('/^[0-9A-Z]{8,15}$/', strtoupper($user_form['numeroIdent']))) {
+            if (!preg_match('/^[0-9A-Z]{8,15}$/', strtoupper($user_form['numeroIdent']) || strlen($user_form['numeroIdent'])) > 15) {
                 $errores['numeroIdent'] = 'El número de identificación no es válido';
             }
 
-            if (!in_array($user_form['sexo'], array('h', 'm', 'o'))) {
+            if (!in_array($user_form['sexo'], array('H', 'M', 'O'))) {
                 $errores['sexo'] =  'El sexo no es válido';
             }
 
@@ -92,7 +113,7 @@ class RegisterController extends Controller
                 $errores['telefono'] = 'El número de teléfono no es válido';
             }
 
-            if (!filter_var($user_form['email'], FILTER_VALIDATE_EMAIL)) {
+            if (!filter_var($user_form['email'], FILTER_VALIDATE_EMAIL) || strlen($user_form['email']) > 40) {
                 $errores["email"] = "La direcion de correo no es valida!";
             }
 
@@ -105,6 +126,19 @@ class RegisterController extends Controller
             if (isset($user_form['nacimiento'])) {
                 $user_form['nacimiento'] = date("Y-m-d", strtotime($user_form['nacimiento']));
             }
+
+            /**
+             * Tratamos la imagen
+             */
+            $result_image = $this->save_image($_FILES['imagen']);
+
+            if ($result_image[0]) {
+                $user_form['imagen'] = $result_image[1];
+            } else {
+                $errores['imagen'] = $result_image[1];
+            }
+
+
 
 
             /**
@@ -124,6 +158,7 @@ class RegisterController extends Controller
 
                 $view->show($user_form, $errores, $message, $message_type);
             } else {
+
 
                 /**
                  * PASO 4 -> Todos los datos han sido correctos y validados!!
@@ -149,7 +184,7 @@ class RegisterController extends Controller
                 $blog_user->setNaixement($user_form['nacimiento']);
                 $blog_user->setAdreca($user_form['direcion']);
                 $blog_user->setCodiPostal($user_form['cp']);
-                $blog_user->setImatge('null');
+                $blog_user->setImatge($user_form['imagen']);
 
                 $user_agent = $_SERVER['HTTP_USER_AGENT'];
 
@@ -174,12 +209,12 @@ class RegisterController extends Controller
                  * que tiene permisos para realizar selects
                  * como la conexion se va a cerrar
                  */
-                $env = parse_ini_file('config.env');
 
-                $host = $env['DB_HOST'];
-                $dbname = $env['DB_DATABASE'];
-                $username = $env['DB_USERNAME'];
-                $password = $env['DB_PASSWORD'];
+
+                $host = $this->env['DB_HOST'];
+                $dbname = $this->env['DB_DATABASE'];
+                $username = $this->env['USR_GENERIC'];
+                $password = $this->env['USR_PASSWORD'];
                 BlogUserModel::create_connection($host, $dbname, $username, $password);
 
                 /**

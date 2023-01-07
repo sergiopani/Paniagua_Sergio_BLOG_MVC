@@ -26,8 +26,8 @@ class LoginController extends Controller
             /**
              * PASO 1 -> Sanitizamos todas las variables que nos vienen por post
              */
-            $email = $this->sanitize($_POST['email']);
-            $password = $this->sanitize($_POST['password']);
+            $email = $this->sanitize_values($_POST['email'], 'email');
+            $password = $this->sanitize_values($_POST['password'], 'password');
 
             /**
              * PASO 2 -> Validamos los datos

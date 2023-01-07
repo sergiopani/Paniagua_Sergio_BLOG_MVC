@@ -1,6 +1,8 @@
 <?php
 class Controller
 {
+    protected $env;
+
     public function __construct()
     {
         /**
@@ -11,6 +13,8 @@ class Controller
          * llama al modelo, y este a su vez llama a la base de datos, y esta no responde
          */
         set_exception_handler(array($this, 'handleException'));
+
+        $this->env = parse_ini_file('config.env');
     }
 
     public function handleException($exception)
@@ -21,6 +25,48 @@ class Controller
         $vista->show();
     }
 
+    public function save_image($image)
+    {
+
+        if (isset($image)) {
+            $file = $image;
+            $file_name = $file['name'];
+            $file_type = $file['type'];
+            $file_tmp_name = $file['tmp_name'];
+            $file_error = $file['error'];
+            $file_size = $file['size'];
+
+            $file_ext = explode('.', $file_name);
+            $file_ext = strtolower(end($file_ext));
+
+            $allowed = array('jpg', 'jpeg', 'png');
+
+            if (in_array($file_ext, $allowed)) {
+                if ($file_error === 0) {
+                    if ($file_size <= 2097152) {
+                        $file_name_new = uniqid('', true) . '.' . $file_ext;
+                        $file_destination = 'imgs/user-images/' . $file_name_new;
+                        if (move_uploaded_file($file_tmp_name, $file_destination)) {
+
+                            return [true, $file_name_new];
+                        } else {
+                            $errores['imagen'] = 'Hubo un error al subir la imagen';
+                        }
+                    } else {
+                        $errores['imagen'] = 'La imagen es demasiado grande';
+                    }
+                } else {
+                    $errores['imagen'] = 'Hubo un error al subir la imagen';
+                }
+            } else {
+                $errores['imagen'] = 'La imagen no es valida';
+            }
+        }
+
+        return [false, $errores['imagen']];
+    }
+
+
     public function getDataFile($file)
     {
         $file = "data/$file.php";
@@ -30,72 +76,119 @@ class Controller
             throw new Exception("No existe el fichero de datos $file");
         }
     }
+    /**
+     * 
+     * Mi funcion sanitize 
+     */
+    public function sanitize_values($value, $type = null)
+    {
+        //si es de tipo string y esta vacio
+        if ($type == 'string' && strlen($value) == 0) {
+            $value = "";
+        }
+        $value = trim($value);
+        $value = htmlspecialchars(stripslashes(trim($value, '-')));
+        $value = strip_tags($value);
+
+        $value = preg_replace('|%([a-fA-F0-9][a-fA-F0-9])|', '---$1---', $value);
+
+        $value = str_replace('%', '', $value);
+
+        $value = preg_replace('|---([a-fA-F0-9][a-fA-F0-9])---|', '%$1', $value);
+
+        switch ($type) {
+            case 'text':
+                // Quita etiquetas HTML y PHP
+                $value = htmlspecialchars($value, ENT_QUOTES);
+                break;
+            case 'int':
+                // Convierte el valor a un entero
+                $value = filter_var($value, FILTER_SANITIZE_NUMBER_INT);
+                break;
+            case 'email':
+                // Quita etiquetas y convierte caracteres no válidos en el formato de correo electrónico a caracteres válidos
+                $value = filter_var($value, FILTER_SANITIZE_EMAIL);
+                break;
+            case 'float':
+                // Convierte el valor a un número de coma flotante
+                $value = filter_var($value, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+                break;
+            case 'password':
+                // Quita caracteres especiales
+                $value = filter_var($value, FILTER_SANITIZE_SPECIAL_CHARS);
+                break;
+            case 'identificacion':
+                // Quita caracteres especiales
+                $value = filter_var($value, FILTER_SANITIZE_SPECIAL_CHARS);
+                break;
+        }
+        return $value;
+    }
 
     /**
-     * Function sanitize() -> Antes lo tenia en varias funciones, pero no era necesario
-     * ahora lo paso todo a la misma funcion
+     * FUNCTION DE TONI 
      */
-    function sanitize($stringANetejar, $convertirAlowercase = 0)
+    function sanitize($value, $convertirAlowercase = 0)
     {
-        if (strlen($stringANetejar) == 0) {
-            $stringANetejar = "";
+        if (strlen($value) == 0) {
+            $value = "";
         } else {
-            $stringANetejar = trim($stringANetejar);
-            $stringANetejar = htmlspecialchars(stripslashes(trim($stringANetejar, '-')));
-            $stringANetejar = strip_tags($stringANetejar);
+            $value = trim($value);
+            $value = htmlspecialchars(stripslashes(trim($value, '-')));
+            $value = strip_tags($value);
             // Preserve escaped octets.
-            $stringANetejar = preg_replace('|%([a-fA-F0-9][a-fA-F0-9])|', '---$1---', $stringANetejar);
+            $value = preg_replace('|%([a-fA-F0-9][a-fA-F0-9])|', '---$1---', $value);
             // Remove percent signs that are not part of an octet.
-            $stringANetejar = str_replace('%', '', $stringANetejar);
+            $value = str_replace('%', '', $value);
             // Restore octets.
-            $stringANetejar = preg_replace('|---([a-fA-F0-9][a-fA-F0-9])---|', '%$1', $stringANetejar);
+            $value = preg_replace('|---([a-fA-F0-9][a-fA-F0-9])---|', '%$1', $value);
 
             switch ($convertirAlowercase) {
                 case 1:
                     if (function_exists('mb_strtolower')) {
-                        $stringANetejar = mb_strtolower($stringANetejar, 'UTF-8');
+                        $value = mb_strtolower($value, 'UTF-8');
                     } else {
-                        $stringANetejar = strtolower($stringANetejar);
+                        $value = strtolower($value);
                     }
                     break;
                 case 2:
                     if (function_exists('mb_strtoupper')) {
-                        $stringANetejar = mb_strtoupper($stringANetejar, 'UTF-8');
+                        $value = mb_strtoupper($value, 'UTF-8');
                     } else {
-                        $stringANetejar = strtoupper($stringANetejar);
+                        $value = strtoupper($value);
                     }
                     break;
                 case 3:
                     if (function_exists('mb_strtoupper') && function_exists('mb_strtolower')) {
-                        $stringANetejar = mb_strtolower($stringANetejar, 'UTF-8');
-                        $stringANetejar[0] = mb_strtoupper($stringANetejar, 'UTF-8');
+                        $value = mb_strtolower($value, 'UTF-8');
+                        $value[0] = mb_strtoupper($value, 'UTF-8');
                     } else {
-                        $stringANetejar = strtolower($stringANetejar);
-                        $stringANetejar[0] = strtoupper($stringANetejar[0]);
+                        $value = strtolower($value);
+                        $value[0] = strtoupper($value[0]);
                     }
                     break;
                 case 4:
                     if (function_exists('mb_strtoupper') && function_exists('mb_strtolower')) {
-                        $stringANetejar = mb_strtolower($stringANetejar, 'UTF-8');
-                        // $stringANetejar[0] = mb_strtoupper($stringANetejar, 'UTF-8');
+                        $value = mb_strtolower($value, 'UTF-8');
+                        // $value[0] = mb_strtoupper($value, 'UTF-8');
                         $inici = 0;
-                        while ($pos = strpos($stringANetejar, " ", $inici)) {
+                        while ($pos = strpos($value, " ", $inici)) {
                             $inici = $pos + 1;
-                            $stringANetejar[$inici] = mb_strtoupper($stringANetejar[$inici], 'UTF-8');
+                            $value[$inici] = mb_strtoupper($value[$inici], 'UTF-8');
                         }
                     } else {
-                        $stringANetejar = strtolower($stringANetejar);
-                        $stringANetejar[0] = strtoupper($stringANetejar[0]);
+                        $value = strtolower($value);
+                        $value[0] = strtoupper($value[0]);
                         $inici = 0;
-                        while ($pos = strpos($stringANetejar, " ", $inici)) {
+                        while ($pos = strpos($value, " ", $inici)) {
                             $inici = $pos + 1;
-                            $stringANetejar[$inici] = strtoupper($stringANetejar[$inici]);
+                            $value[$inici] = strtoupper($value[$inici]);
                         }
                     }
                     break;
             }
         }
-        return $stringANetejar;
+        return $value;
     }
 
     /**

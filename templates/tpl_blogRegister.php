@@ -135,6 +135,9 @@
             <div class="formbox">
                 <label for="imagen">Imagen del usuario:</label>
                 <input type="file" name="imagen" id="imagen"><br><br>
+                <?php
+                echo '<p style="color:red">' . $errores['imagen'] . '</p>';
+                ?>
             </div>
 
             <div class="formbox">
