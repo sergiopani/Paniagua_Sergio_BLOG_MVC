@@ -11,6 +11,9 @@ session_set_cookie_params(0);
  */
 session_start();
 
+
+
+
 /**
  * PASO 3 -> Funcion autoloader para cargar las clases de forma automatica
  */
@@ -30,19 +33,31 @@ function my_autoloader($class)
 
 spl_autoload_register("my_autoloader");
 
+//Prueba del read
+$prueba = new IndexModel();
+echo "<pre>";
+
+print_r($prueba->readIndex());
+echo "</pre>";
+
+//Prueba de eliminar el del indice
+$to_delete = new Index();
+$to_delete->indice = 'aex';
+$prueba->deleteIndex($to_delete);
+
 
 /**
  * PASO 4 -> Cargamos el front controller si se produce alguna excepcion
  * lanzamos un error
  */
-try {
+// try {
 
-    $app = new FrontController();
-    $app->dispatch();
+//     $app = new FrontController();
+//     $app->dispatch();
     
-} catch (Exception $e) {
+// } catch (Exception $e) {
 
 
-    $obj = new ErrorView($e);
-    $obj->show();
-}
+//     $obj = new ErrorView($e);
+//     $obj->show();
+// }
