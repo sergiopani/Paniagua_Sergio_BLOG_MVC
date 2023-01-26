@@ -33,19 +33,32 @@ function my_autoloader($class)
 
 spl_autoload_register("my_autoloader");
 
-//Prueba del read
-$prueba = new IndexModel();
-echo "<pre>";
-
-print_r($prueba->readIndex());
-echo "</pre>";
 
 //Prueba de eliminar el del indice
-$to_delete = new Index();
-$to_delete->indice = 'aex';
-$prueba->deleteIndex($to_delete);
+// $to_delete = new Index();
+// $to_delete->indice = 'aex';
+// $prueba->delete($to_delete);
+
+$prueba = new IndexModel();
+
+//preueba del update
+$to_update = new Index();
+$to_update->indice = 'atx';
+$to_update->descripcio = 'Accion de la empresa Explotaciones Mineras';
+$prueba->update($to_update);
 
 
+//prueba del insert
+$to_insert = new Index();
+$to_insert->indice = 'aex';
+$to_insert->descripcio = 'Hola me llamo Sergio';
+$prueba->create($to_insert);
+
+//Prueba del read
+echo "<pre>";
+
+print_r($prueba->read());
+echo "</pre>";
 /**
  * PASO 4 -> Cargamos el front controller si se produce alguna excepcion
  * lanzamos un error
@@ -54,7 +67,7 @@ $prueba->deleteIndex($to_delete);
 
 //     $app = new FrontController();
 //     $app->dispatch();
-    
+
 // } catch (Exception $e) {
 
 
