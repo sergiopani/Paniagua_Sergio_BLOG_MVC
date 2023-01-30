@@ -82,7 +82,6 @@ class AccioModel extends Model
              */
             return $query->fetchAll(PDO::FETCH_CLASS, 'Accio');
 
-
         } catch (PDOException $e) {
             throw new PDOException("No se han podido leer las acciones: " . $e->getMessage());
         }
@@ -179,7 +178,7 @@ class AccioModel extends Model
         }
     }
 
-
+    
 
 
 

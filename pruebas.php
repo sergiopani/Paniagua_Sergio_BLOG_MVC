@@ -41,6 +41,9 @@ spl_autoload_register("my_autoloader");
 
 $prueba = new IndexModel();
 
+echo "<pre>";
+print_r($prueba->read());
+echo "</pre>";
 //preueba del update
 $to_update = new Index();
 $to_update->indice = 'atx';
@@ -55,10 +58,7 @@ $to_insert->descripcio = 'Hola me llamo Sergio';
 $prueba->create($to_insert);
 
 //Prueba del read
-echo "<pre>";
 
-print_r($prueba->read());
-echo "</pre>";
 /**
  * PASO 4 -> Cargamos el front controller si se produce alguna excepcion
  * lanzamos un error

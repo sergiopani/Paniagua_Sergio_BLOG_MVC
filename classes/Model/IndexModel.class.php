@@ -31,12 +31,9 @@ class IndexModel extends Model
              * Asi podemos comprobar si se ha insertado correctamente
              */
             return $query->rowCount();
-
-
         } catch (PDOException $e) {
             throw new Exception("No se ha podido crear el index" . $e->getMessage());
         }
-
     }
 
     public function read()
@@ -56,17 +53,25 @@ class IndexModel extends Model
              */
             $query->execute();
             /**
-             * PASO 4 -> Convertir el resultado a una 
-             * array de objetos Index, con fetchAll()
-             * Devuelve una array con todos los objetos,
-             * Y el FETCH_CLASS, indica que los objetos
-             * serán de la clase Index
+             * PASO 4 -> Hacer un fetch del resultado
+             * acabar montando los objetos de tipo index
              */
-            $result = $query->fetchAll(PDO::FETCH_CLASS, 'Index');
+
+            $toReturn = array();
+            $result = $query->fetchAll(PDO::FETCH_ASSOC);
+            foreach ($result as $index) {
+                $aux = new Index();
+                $aux->indice = $index['indice'];
+                $aux->descripcio = $index['descripcio'];
+                $aux->accions = $this->getAccionsByIndex($aux->indice);
+
+                array_push($toReturn, $aux);
+            }
+
             /**
              * PASO 5 -> Devolver el resultado
              */
-            return $result;
+            return $toReturn;
         } catch (PDOException $e) {
             throw new Exception("Error al leer los registros 
             de la tabla tbl_index: " . $e->getMessage());
@@ -101,8 +106,6 @@ class IndexModel extends Model
         } catch (PDOException $e) {
             throw new Exception("No se ha podido hacer update del index:" . $e->getMessage());
         }
-
-
     }
 
     public function delete(Index $index)
@@ -154,7 +157,22 @@ class IndexModel extends Model
         }
     }
 
+    public function getAccionsByIndex($indice)
+    {
+        try {
+            $sentence = "SELECT * FROM rel_index_accions WHERE index_id = :indice";
 
+            $query = $this->conect->prepare($sentence);
+
+            $query->execute(array(
+                ':indice' => $indice
+            ));
+
+            return $query->fetchAll(PDO::FETCH_CLASS, 'Accio');
+        } catch (PDOException $e) {
+            throw new Exception("No se pueden leer las acciones!" . $e->getMessage());
+        }
+    }
 
     public function getIndexByid($id)
     {
@@ -190,17 +208,5 @@ class IndexModel extends Model
             throw new Exception("Error al leer los registros 
             de la tabla tbl_index: " . $e->getMessage());
         }
-
-
     }
-
-
-
-
-
-
-
-
-
-
 }

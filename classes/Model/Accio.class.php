@@ -7,10 +7,11 @@ class Accio{
 
     public $nom;
     public $ticker;
-    public $mercat_id;
+    public $mercat_id;//De la relacion bidirecional
     public $imatge;
     public $isIn;
-    public $sectorId;
+    public $sectorId;//De la relacion bidirecional
+
     
     public function __construct(){
         

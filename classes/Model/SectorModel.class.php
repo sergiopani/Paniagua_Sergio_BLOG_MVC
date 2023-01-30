@@ -38,6 +38,11 @@ class SectorModel extends Model
     {
 
         try {
+            /**
+             * Leo un numero limitado de acciones
+             * Limitado por los dos parametros
+             * El objetivo es devolver una array de acciones
+             */
             $sentence = "SELECT * FROM " . self::TABLA . " LIMIT :limit OFFSET :offset";
             $query = $this->conect->prepare($sentence);
             $query->execute(
@@ -47,7 +52,22 @@ class SectorModel extends Model
                 )
             );
             $result = $query->fetchAll(PDO::FETCH_ASSOC);
-            return $result;
+
+            $toReturn = array();
+            foreach($result as $sector){
+                /**
+                 * Un objeto sector tiene dos propiedades
+                 * -> Nombre del sector
+                 * -> Array de acciones de ese sector
+                 */
+                $aux = new Sector();
+                $aux->sector = $sector['sector'];
+                $aux->accions = $this->getAllBySector($sector['sector']);
+
+                array_push($toReturn, $aux);
+            }
+
+            return $toReturn;
         } catch (PDOException $e) {
             throw new Exception("No se ha podido leer el sector" . $e->getMessage());
         }
@@ -98,7 +118,7 @@ class SectorModel extends Model
         }
     }
 
-    public function getAllAccionsBySector($sectorId) {
+    public function getAllBySector($sectorId) {
         $sentence = "SELECT * FROM tbl_accions WHERE sector_id = :sectorId";
         $query = $this->conect->prepare($sentence);
         $query->execute(
